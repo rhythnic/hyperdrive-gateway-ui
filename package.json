@@ -1,13 +1,14 @@
 {
   "name": "hyperdrive-gateway-ui",
-  "version": "0.0.1-rc.2",
+  "version": "0.0.1-rc.3",
   "description": "Single page application front-end for hyperdrive-gateway",
   "type": "module",
   "scripts": {
     "dev": "snowpack dev",
-    "build": "snowpack build",
-    "watch": "snowpack build --watch",
-    "standard": "standard"
+    "build": "snowpack build && mkdir public/shoelace && npm run copy_assets",
+    "snowpack": "snowpack",
+    "standard": "standard",
+    "copy_assets": "cp -R node_modules/@shoelace-style/shoelace/dist/assets public/shoelace/assets"
   },
   "repository": {
     "type": "git",

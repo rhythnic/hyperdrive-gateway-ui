@@ -1,55 +1,40 @@
 <script>
-  import { appController } from '../controllers/index.js'
-  let appName = 'Hyperdrive Gateway'
-  const openHyperdriveTab = appController.openHyperdriveTab.bind(appController)
+  import SlForm from '@shoelace-style/shoelace/dist/components/form/form.js'
+  import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js'
+  import SlButton from '@shoelace-style/shoelace/dist/components/button/button.js'
+  import { hexToBase32 } from '../lib/hex-to-base32.js'
+
+  const {
+    SNOWPACK_PUBLIC_APP_NAME: APP_NAME,
+    SNOWPACK_PUBLIC_GATEWAY_HOST: GATEWAY_HOST
+  } = import.meta.env
+
   let form
   const submitForm = () => form.submit()
+
+  function openHyperdriveTab (event) {
+    const hyperdriveUri = event.detail.formData.get('uri')
+    const [_, publicKey, filePath] = /^hyper:\/\/([0-9a-fA-F]{64})(\/?.*)$/.exec(hyperdriveUri)
+    const host = GATEWAY_HOST || window.location.host
+    const publicKeyBase32 = hexToBase32(publicKey)
+    const gatewayUri = `https://${publicKeyBase32}.${host}${filePath}`
+    window.open(gatewayUri, "_blank");
+  }
 </script>
-
-<style>
-  header {
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    h1 {
-      margin-bottom: 0.5rem;
-    }
-    section {
-      width: 100%;
-      padding: 1rem 0;
-    }
-    .hyperdrive-uri-section {
-      display: flex;
-      justify-content: center;
-    }
-    .hyperdrive-uri-card {
-      width: 100%;
-      max-width: 800px;
-    }
-    .hyperdrive-uri-card [slot="header"] {
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between;
-    }
-
-    .hyperdrive-uri-card h3 {
-      margin: 0;
-    }
-</style>
 
 
 <header>
-  <h1>{appName}</h1>
+  <h1>{APP_NAME}</h1>
   <p>A <a href="https://hypercore-protocol.org/">hyperdrive</a> gateway</p>
 </header>
 <main>
-  <section class="hyperdrive-uri-section">
-    <sl-card class="hyperdrive-uri-card">
+  <section class="hyper-uri-section">
+    <sl-card class="hyper-uri-card">
       <div slot="header">
         Hyperdrive URL
         <sl-button on:sl-click={submitForm} class="open-btn" size="small" pill submit>Open</sl-button>
       </div>
-      <sl-form class="hyperdrive-uri-form" on:sl-submit={openHyperdriveTab} bind:this={form}>
+      <sl-form class="hyper-uri-form" on:sl-submit={openHyperdriveTab} bind:this={form}>
         <sl-input
           name="uri"
           placeholder="hyper://d3b1ab6b6e703f02ecc2ad1909b5ee8e7a0da6498e56a2d9f09bf75f081d8c65"
@@ -58,3 +43,34 @@
     </sl-card>
   </section>
 </main>
+
+
+<style>
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+  section {
+    width: 100%;
+    padding: 1rem 0;
+  }
+  .hyper-uri-section {
+    display: flex;
+    justify-content: center;
+  }
+  .hyper-uri-card {
+    width: 100%;
+    max-width: 800px;
+  }
+  .hyper-uri-card [slot="header"] {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+  }
+  .hyper-uri-card h3 {
+    margin: 0;
+  }
+</style>
