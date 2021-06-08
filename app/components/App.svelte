@@ -6,10 +6,10 @@
   import { hexToBase32 } from '../lib/hex-to-base32.js'
 
   const {
-    SNOWPACK_PUBLIC_APP_NAME: APP_NAME,
     SNOWPACK_PUBLIC_GATEWAY_HOST: GATEWAY_HOST
   } = import.meta.env
 
+  const appName = window.location.host
   let form
   const submitForm = () => form.submit()
 
@@ -23,9 +23,11 @@
   }
 </script>
 
-
+<svelte:head>
+	<title>{appName}</title>
+</svelte:head>
 <header>
-  <h1>{APP_NAME}</h1>
+  <h1>{appName}</h1>
   <a href="https://github.com/rhythnic/hyperdrive-gateway">A hyperdrive gateway</a>
 </header>
 <main>
@@ -33,11 +35,12 @@
     <sl-card class="hyper-uri-card">
       <div slot="header">
         Hyperdrive URL
-        <sl-button on:sl-click={submitForm} class="open-btn" size="small" pill submit>Open</sl-button>
+        <sl-button on:click={submitForm} class="open-btn" size="small" pill submit>Open</sl-button>
       </div>
       <sl-form class="hyper-uri-form" on:sl-submit={openHyperdriveTab} bind:this={form}>
         <sl-input
           name="uri"
+          required
           placeholder="hyper://d3b1ab6b6e703f02ecc2ad1909b5ee8e7a0da6498e56a2d9f09bf75f081d8c65"
         ></sl-input>
       </sl-form>
