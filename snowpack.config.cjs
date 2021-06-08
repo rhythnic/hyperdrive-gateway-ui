@@ -4,8 +4,8 @@ let cert
 let key
 
 if (process.env.NODE_ENV === 'development') {
-  cert = fs.readFileSync('/dev-certs/local-computer.crt')
-  key = fs.readFileSync('/dev-certs/local-computer.key')
+  cert = fs.readFileSync('/dev-certs/local.computer.crt')
+  key = fs.readFileSync('/dev-certs/local.computer.key')
 }
 
 module.exports = {
