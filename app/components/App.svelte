@@ -3,7 +3,7 @@
   import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js'
   import SlButton from '@shoelace-style/shoelace/dist/components/button/button.js'
   import SlCard from '@shoelace-style/shoelace/dist/components/card/card.js'
-  import { hexToBase32 } from '../../lib/hex-to-base32.js'
+  import { hexToBase32 } from '../lib/hex-to-base32.js'
 
   const {
     SNOWPACK_PUBLIC_APP_NAME: APP_NAME,
