@@ -2,7 +2,8 @@
   import SlForm from '@shoelace-style/shoelace/dist/components/form/form.js'
   import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js'
   import SlButton from '@shoelace-style/shoelace/dist/components/button/button.js'
-  import { hexToBase32 } from '../lib/hex-to-base32.js'
+  import SlCard from '@shoelace-style/shoelace/dist/components/card/card.js'
+  import { hexToBase32 } from '../../lib/hex-to-base32.js'
 
   const {
     SNOWPACK_PUBLIC_APP_NAME: APP_NAME,
@@ -25,7 +26,7 @@
 
 <header>
   <h1>{APP_NAME}</h1>
-  <p>A <a href="https://hypercore-protocol.org/">hyperdrive</a> gateway</p>
+  <a href="https://github.com/rhythnic/hyperdrive-gateway">A hyperdrive gateway</a>
 </header>
 <main>
   <section class="hyper-uri-section">
@@ -67,10 +68,10 @@
   }
   .hyper-uri-card [slot="header"] {
     display: flex; 
-    align-items: center; 
+    align-items: flex-end; 
     justify-content: space-between;
   }
-  .hyper-uri-card h3 {
-    margin: 0;
+  .hyper-uri-form {
+    margin-top: 0.25rem;
   }
 </style>

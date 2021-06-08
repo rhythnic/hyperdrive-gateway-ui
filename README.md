@@ -1,16 +1,9 @@
 # hyperdrive-gateway-ui
-Single page application front-end for [hyperdrive-gateway][hyperdrive-gateway]
+Single page application front-end for [hyperdrive-gateway-server][hyperdrive-gateway-server]
 
-## Development
-
-See [hyperdrive-gateway][hyperdrive-gateway] for development.
-
-## Build
-Running the build command creates a `public` directory with the built application assets.
-
-```
-npm install
-npm run build
-```
+## Hyperdrive Gateway
+See the [Hyperdrive Gateway][hyperdrive-gateway]
+repository for more information and documentation for running locally.
 
 [hyperdrive-gateway]: https://github.com/rhythnic/hyperdrive-gateway
+[hyperdrive-gateway-server]: https://github.com/rhythnic/hyperdrive-gateway-server

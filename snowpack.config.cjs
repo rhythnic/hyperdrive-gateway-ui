@@ -4,11 +4,12 @@ let cert
 let key
 
 if (process.env.NODE_ENV === 'development') {
-  cert = fs.readFileSync('/app/dev-certs/local-computer.crt')
-  key = fs.readFileSync('/app/dev-certs/local-computer.key')
+  cert = fs.readFileSync('/dev-certs/local-computer.crt')
+  key = fs.readFileSync('/dev-certs/local-computer.key')
 }
 
 module.exports = {
+  root: './app',
   buildOptions: {
     out: './public'
   },
@@ -21,6 +22,7 @@ module.exports = {
     '@snowpack/plugin-svelte'
   ],
   devOptions: {
+    port: 8081,
     secure: { cert, key }
   }
 }
